@@ -10,7 +10,7 @@ const listProducts = async (_req, res) => {
 const listProductById = async (req, res) => {
   const { id } = req.params;
   const { type, message } = await productsService.findById(id);
-  if (type) return res.status(errorMap.mapError(type)).json({ message: 'Product not found' });
+  if (type) return res.status(errorMap.mapError(type)).json({ message });
   res.status(200).json(message);
 };
 
