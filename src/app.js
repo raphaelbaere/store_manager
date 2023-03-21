@@ -3,6 +3,7 @@ const express = require('express');
 const productsRoute = require('./routes/productsRoute');
 
 const app = express();
+app.use(express.json());
 
 app.use('/products', productsRoute);
 
