@@ -13,6 +13,29 @@ const allProducts = [
   }
 ]
 
+const oneProduct =
+{
+  id: 1,
+  name: "Martelo de Thor"
+};
+
+const oneSale = [
+  {
+    "saleId": 1,
+    "date": "2021-09-09T04:54:29.000Z",
+    "productId": 1,
+    "quantity": 2
+  }
+];
+
+const oneSaleWithoutID = [
+  {
+    "date": "2021-09-09T04:54:29.000Z",
+    "productId": 1,
+    "quantity": 2
+  }
+];
+
 const allSales = [
   {
     "saleId": 1,
@@ -31,4 +54,7 @@ const allSales = [
 module.exports = {
   allProducts,
   allSales,
+  oneProduct,
+  oneSale,
+  oneSaleWithoutID,
 }

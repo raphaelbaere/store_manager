@@ -3,10 +3,10 @@ const sinon = require('sinon');
 
 const { salesModel } = require('../../../src/models');
 const { salesService } = require('../../../src/services');
-const { allSales } = require('../../mocks/mocks'); 
+const { allSales, oneSale, oneSaleWithoutID } = require('../../mocks/mocks'); 
 
 describe('Testa a model, e...', () => {
-  it('Testa se é possível recuperar os produtos através do service findAll', async () => {
+  it('Testa se é possível recuperar as vendas através do service findAll', async () => {
     sinon.stub(salesModel, 'findAll')
       .resolves(allSales);
     
@@ -14,5 +14,14 @@ describe('Testa a model, e...', () => {
 
     expect(result.type).to.be.equal(null);
     expect(result.message).to.be.deep.equal(allSales);
-  })
+  });
+    it('Testa se é possível recuperar a venda através do service findById', async () => {
+    sinon.stub(salesModel, 'findById')
+      .resolves(oneSale);
+    
+    const result = await salesService.findById();
+
+    expect(result.type).to.be.equal(null);
+    expect(result.message).to.be.deep.equal(oneSaleWithoutID);
+  });
 })

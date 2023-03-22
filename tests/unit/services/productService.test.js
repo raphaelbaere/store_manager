@@ -3,7 +3,7 @@ const sinon = require('sinon');
 
 const { productsModel } = require('../../../src/models');
 const { productsService } = require('../../../src/services');
-const { allProducts } = require('../../mocks/mocks'); 
+const { allProducts, oneProduct } = require('../../mocks/mocks'); 
 
 describe('Testa a model, e...', () => {
   it('Testa se é possível recuperar os produtos através do service findAll', async () => {
@@ -14,5 +14,14 @@ describe('Testa a model, e...', () => {
 
     expect(result.type).to.be.equal(null);
     expect(result.message).to.be.deep.equal(allProducts);
-  })
+  });
+    it('Testa se é possível recuperar o produto através do service findById', async () => {
+    sinon.stub(productsModel, 'findById')
+      .resolves(oneProduct);
+    
+    const result = await productsService.findById();
+
+    expect(result.type).to.be.equal(null);
+    expect(result.message).to.be.deep.equal(oneProduct);
+  });
 })
