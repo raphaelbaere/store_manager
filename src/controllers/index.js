@@ -20,6 +20,14 @@ const createProduct = async (req, res) => {
   res.status(201).json(message);
 };
 
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const { type, message } = await productsService.updateProduct(id, name);
+  if (type) return res.status(errorMap.mapError(type)).json({ message });
+  res.status(200).json(message);
+};
+
 const createSale = async (req, res) => {
   const { type, message } = await productsService.createSale(req.body);
   if (type) return res.status(errorMap.mapError(type)).json({ message });
@@ -46,4 +54,5 @@ module.exports = {
   createSale,
   listSales,
   listSaleById,
+  updateProduct,
 };

@@ -17,6 +17,14 @@ const createProduct = async (product) => {
   return { type: null, message: { id: insertId, name } };
 };
 
+const updateProduct = async (productId, name) => {
+  const productById = await productsModel.findById(productId);
+    if (!productById) return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
+  await productsModel.update(productId, name);
+  const productUpdated = await productsModel.findById(productId);
+  return { type: null, message: productUpdated };
+};
+
 const createSale = async (sales) => {
   const saleId = await productsModel.insertSaleDate();
   await Promise.all(sales.map(({ productId, quantity }) =>
@@ -29,4 +37,5 @@ module.exports = {
   findById,
   createProduct,
   createSale,
+  updateProduct,
 };

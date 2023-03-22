@@ -18,6 +18,15 @@ const insert = async (product) => {
   return insertId;
 };
 
+const update = async (productId, name) => {
+  const [updated] = await connection
+    .execute(`UPDATE StoreManager.products
+SET name = ?
+WHERE ?;`,
+      [name, productId]);
+  return updated;
+};
+
 const insertSaleDate = async () => {
   const [{ insertId }] = await
     connection.execute('INSERT INTO StoreManager.sales (date) VALUES (NOW())');
@@ -36,4 +45,5 @@ module.exports = {
   insert,
   insertSale,
   insertSaleDate,
+  update,
 };
