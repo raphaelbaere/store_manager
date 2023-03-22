@@ -59,7 +59,7 @@ describe('Testa a model, e...', () => {
           expect(result.message).to.be.deep.equal(oneProduct);
           sinon.restore();
           });
-          it('Testa se é possível deletar o produto através do service deleteProduct', async () => {
+          it('Testa se é possível deletar o produto através do service deleteProduct...', async () => {
     sinon.stub(productsModel, 'findById')
       .resolves([oneProduct]);
     
