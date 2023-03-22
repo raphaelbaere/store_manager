@@ -32,7 +32,7 @@ const deleteSale = async (saleId) => {
 const updateSale = async (saleId, sales) => {
     const saleById = await salesModel.findById(saleId);
   if (saleById.length < 1) return { type: 'PRODUCT_NOT_FOUND', message: 'Sale not found' };
-  Promise.all(sales.map(({ quantity, productId }) =>
+  await Promise.all(sales.map(({ quantity, productId }) =>
     salesModel.updateSale(saleId, productId, quantity)));
   return { type: null, message: { saleId, itemsUpdated: sales } };
 };
