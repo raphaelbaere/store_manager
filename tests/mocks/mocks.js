@@ -49,7 +49,12 @@ const allSales = [
     "productId": 2,
     "quantity": 2
   },
-]
+];
+
+const updatedSales = {
+  saleId: 1,
+  updateSales: allSales,
+}
 
 module.exports = {
   allProducts,
@@ -57,4 +62,5 @@ module.exports = {
   oneProduct,
   oneSale,
   oneSaleWithoutID,
+  updatedSales,
 }

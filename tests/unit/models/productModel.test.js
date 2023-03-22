@@ -15,8 +15,8 @@ describe('Testa a model, e...', () => {
     expect(result).to.be.deep.equal(allProducts);
 
     sinon.restore();
-  })
-    it('Testa se é possível recuperar o produto através do model findById', async () => {
+  });
+  it('Testa se é possível recuperar o produto através do model findById', async () => {
     sinon.stub(connection, 'execute')
       .resolves([[oneProduct]]);
     
@@ -25,5 +25,15 @@ describe('Testa a model, e...', () => {
     expect(result).to.be.deep.equal(oneProduct);
 
     sinon.restore();
-  })
+  });
+  it('Testa se é possível inserir o produto através do model insert', async () => {
+    sinon.stub(connection, 'execute')
+      .resolves([{ insertId: 1 }]);
+    
+    const result = await productsModel.insert('Martelo do Thor');
+
+    expect(result).to.be.deep.equal(1);
+
+    sinon.restore();
+  });
 })

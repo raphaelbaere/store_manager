@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 const connection = require('../../../src/db/connection');
-const { salesModel } = require('../../../src/models');
+const { salesModel, productsModel } = require('../../../src/models');
 const { allSales, oneSale } = require('../../mocks/mocks'); 
 
 describe('Testa a model, e...', () => {
@@ -23,6 +23,17 @@ describe('Testa a model, e...', () => {
     const result = await salesModel.findById();
 
     expect(result).to.be.deep.equal(oneSale);
+
+    sinon.restore();
+    });
+      it('Testa se é possível inserir uma venda através do model insertSale', async () => {
+    sinon.stub(connection, 'execute')
+      .resolves([{ insertId: 1 }]);
+    
+        const result = await productsModel.insertSaleDate();
+        await productsModel.insertSale(1, 1, 1)
+
+    expect(result).to.be.deep.equal(1);
 
     sinon.restore();
   });

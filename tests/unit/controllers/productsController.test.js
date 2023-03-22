@@ -1,5 +1,5 @@
 const { allProducts, oneProduct } = require('../../mocks/mocks');
-const { listProducts, listProductById } = require('../../../src/controllers');
+const { listProducts, listProductById, createProduct } = require('../../../src/controllers');
 const { productsService } = require('../../../src/services');
 const chai = require('chai');
 const sinon = require('sinon');
@@ -43,6 +43,25 @@ describe('Testa Controller', function () {
     await listProductById(req, res);
 
     expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(oneProduct);
+
+    sinon.restore();
+    });
+      it('responde status 200 e objeto com criado resultado, na rota /products', async function() {
+      const res = {};
+      const req = {};
+
+      req.body = oneProduct
+
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+
+    sinon.stub(productsService, 'createProduct')
+      .resolves({ type: null, message: oneProduct });
+
+    await createProduct(req, res);
+
+    expect(res.status).to.have.been.calledWith(201);
     expect(res.json).to.have.been.calledWith(oneProduct);
 
     sinon.restore();
