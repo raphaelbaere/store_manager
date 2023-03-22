@@ -13,5 +13,7 @@ describe('Testa a model, e...', () => {
     const result = await productsModel.findAll();
 
     expect(result).to.be.deep.equal(allProducts);
+
+    sinon.restore();
   })
 })

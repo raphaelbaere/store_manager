@@ -1,13 +1,13 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 
-const productModel = require('../../../src/models');
+const { productsModel } = require('../../../src/models');
 const { productsService } = require('../../../src/services');
 const { allProducts } = require('../../mocks/mocks'); 
 
 describe('Testa a model, e...', () => {
   it('Testa se é possível recuperar os produtos através do service findAll', async () => {
-    sinon.stub(productModel, 'findAll')
+    sinon.stub(productsModel, 'findAll')
       .resolves(allProducts);
     
     const result = await productsService.findAll();
