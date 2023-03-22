@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 const productModel = require('../../../src/models');
-const productService = require('../../../src/services');
+const { productsService } = require('../../../src/services');
 const { allProducts } = require('../../mocks/mocks'); 
 
 describe('Testa a model, e...', () => {
@@ -10,7 +10,7 @@ describe('Testa a model, e...', () => {
     sinon.stub(productModel, 'findAll')
       .resolves(allProducts);
     
-    const result = await productService.findAll();
+    const result = await productsService.findAll();
 
     expect(result.type).to.be.equal(null);
     expect(result.message).to.be.deep.equal(allProducts);

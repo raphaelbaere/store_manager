@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 
 const connection = require('../../../src/db/connection');
-const productModel = require('../../../src/models');
+const { productsModel } = require('../../../src/models');
 const { allProducts } = require('../../mocks/mocks'); 
 
 describe('Testa a model, e...', () => {
@@ -10,7 +10,7 @@ describe('Testa a model, e...', () => {
     sinon.stub(connection, 'execute')
       .resolves([allProducts]);
     
-    const result = await productModel.findAll();
+    const result = await productsModel.findAll();
 
     expect(result).to.be.deep.equal(allProducts);
   })

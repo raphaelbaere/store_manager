@@ -1,6 +1,6 @@
 const { allProducts } = require('../../mocks/mocks');
 const { listProducts } = require('../../../src/controllers');
-const productsService = require('../../../src/services');
+const { productsService } = require('../../../src/services');
 const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
