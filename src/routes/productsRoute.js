@@ -1,9 +1,12 @@
 const express = require('express');
 const { listProducts, listProductById,
-  createProduct, updateProduct, deleteProduct } = require('../controllers');
+  createProduct, updateProduct,
+  deleteProduct, searchProducts } = require('../controllers');
 const validateProductValues = require('../middlewares/validateProductValues');
 
 const route = express.Router();
+
+route.get('/search', searchProducts);
 
 route.get('/', listProducts);
 

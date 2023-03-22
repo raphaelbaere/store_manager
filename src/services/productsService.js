@@ -39,6 +39,16 @@ const createSale = async (sales) => {
   return { type: null, message: { id: saleId, itemsSold: sales } };
 };
 
+const searchProducts = async (q) => {
+    if (!q) {
+    const products = await productsModel.findAll();
+    return { type: null, message: products };
+    }
+  const products = await productsModel.findAll();
+  const filteredByName = products.filter((product) => product.name.includes(q));
+  return { type: null, message: filteredByName };
+};
+
 module.exports = {
   findAll,
   findById,
@@ -46,4 +56,5 @@ module.exports = {
   createSale,
   updateProduct,
   deleteProduct,
+  searchProducts,
 };

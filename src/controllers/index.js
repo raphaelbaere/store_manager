@@ -69,6 +69,13 @@ const updateSale = async (req, res) => {
   res.status(200).json(message);
 };
 
+const searchProducts = async (req, res) => {
+  const { q } = req.query;
+  const { type, message } = await productsService.searchProducts(q);
+  if (type) return res.status(errorMap.mapError(type)).json({ message });
+  res.status(200).json(message);
+};
+
 module.exports = {
   listProducts,
   listProductById,
@@ -80,4 +87,5 @@ module.exports = {
   deleteProduct,
   deleteSale,
   updateSale,
+  searchProducts,
 };
